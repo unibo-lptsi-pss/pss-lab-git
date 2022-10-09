@@ -43,13 +43,3 @@ per confrontarlo con le soluzioni.
 ### Si rimuova il file ripristinato e si ripulisca lo stage
 
 ### Si torni al commit precedente a quello in cui `Mistake.java` è stato creato. Si utilizzi la storia del repository se utile.
-
-### Si crei un nuovo branch di nome `experiment` e si agganci la `HEAD` al nuovo branch
-
-### Si crei un file README.md con contenuto a piacere, e si faccia un commit che lo includa
-
-### Si torni sul branch master e si elenchino i branch disponibili
-
-### Si unisca il branch experiment al branch master (si faccia un merge in cui experiment viene messo dentro master, e non viceversa)
-
-### Si osservi la storia del repository
