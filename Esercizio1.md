@@ -419,12 +419,12 @@ nothing to commit, working tree clean
 ```
 ❯ git log --all --graph --oneline
 *   a8cbe9c (HEAD -> master) Merge branch 'experiment'
-    |\  
-    | * 901ce27 (experiment) create a README file
+|\  
+| * 901ce27 (experiment) create a README file
 * | dbe6d06 remove ToDeleTe.java
 * | e8f6321 rename Mistake into ToDelete
 * | 777b6d5 add Mistake.java
-  |/
+|/
 * c8fdbb3 create the attribute files
 * ad267b4 create an ignore list
 * d82cd28 create HelloWorld.java
