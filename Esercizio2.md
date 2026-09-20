@@ -15,13 +15,12 @@ si verifichi lo stato del repository con `git status`.
 ```shell
 ❯ git clone git@github.com:APICe-at-DISI/OOP-git-merge-conflict-test.git
 Cloning into 'OOP-git-merge-conflict-test'...
-X11 forwarding request failed on channel 0
-remote: Enumerating objects: 12, done.
-remote: Counting objects: 100% (4/4), done.
-remote: Compressing objects: 100% (3/3), done.
-Receiving objects: 100% (12/12), done.
-Resolving deltas: 100% (2/2), done.
-remote: Total 12 (delta 1), reused 1 (delta 1), pack-reused 8
+remote: Enumerating objects: 24, done.
+remote: Counting objects: 100% (16/16), done.
+remote: Compressing objects: 100% (11/11), done.
+remote: Total 24 (delta 5), reused 13 (delta 5), pack-reused 8 (from 1)
+Receiving objects: 100% (24/24), done.
+Resolving deltas: 100% (6/6), done.
 ❯ cd OOP-git-merge-conflict-test
 ❯ git status
 On branch master
@@ -34,12 +33,13 @@ nothing to commit, working tree clean
 
 ```shell
 ❯ git branch -v
-* master 8e0f29c Change HelloWorld to print the number of available processors
+* master 2f617a5 switch to Java 25 IO.println
 ❯ git checkout -b feature origin/feature
-branch 'feature' set up to track 'origin/feature'.
 Switched to a new branch 'feature'
+branch 'feature' set up to track 'origin/feature'.
 ❯ git branch -v
-* feature bed943f Print author information master 8e0f29c Change HelloWorld to print the number of available processors
+* feature d809d3e switch to Java 25 IO.println
+  master  2f617a5 switch to Java 25 IO.println
 ```
 
 3. Si faccia il merge di `feature` dentro `master`, ossia: si posizioni la `HEAD` su `master`
@@ -74,32 +74,32 @@ Automatic merge failed; fix conflicts and then commit the result.
 
 ```shell
 ❯ cat HelloWorld.java
-public final class HelloWorld {
+final String AUTHOR = "Danilo Pianini";
 
-        private static final String AUTHOR = "Danilo Pianini";
+int procNumber() {
+	return Runtime.getRuntime().availableProcessors();
+}
 
-        public static void main(final String[] args) {
-                IO.println("This program has been realised by " + AUTHOR);
-                IO.println("This program is running in a PC with " + procNumber() + " logic processors!");
-        }
-
-        public static int procNumber() {
-                return Runtime.getRuntime().availableProcessors();
-        }
-
+void main() {
+	IO.println("This program has been realised by " + AUTHOR);
+	IO.println("This program is running in a PC with " + procNumber() + " logic processors!");
 }
 ❯ javac HelloWorld.java
 ❯ java HelloWorld
 This program has been realised by Danilo Pianini
-This program is running in a PC with 12 logic processors!
+This program is running in a PC with 32 logic processors!
 ❯ git add HelloWorld.java
 ❯ git commit --no-edit
-[master cd50814] Merge branch 'feature'
+[master aa69a0f] Merge branch 'feature'
 ❯ git log --all --graph --oneline
-*   cd50814 (HEAD -> master) Merge branch 'feature'
+*   aa69a0f (HEAD -> master) Merge branch 'feature'
 |\  
-| * bed943f (origin/feature, feature) Print author information
-* | 8e0f29c (origin/master, origin/HEAD) Change HelloWorld to print the number of available processors
+| * d809d3e (origin/feature, feature) switch to Java 25 IO.println
+| * e4ee4cb switch to Java 25 compact source file
+| * bed943f Print author information
+* | 2f617a5 (origin/master, origin/HEAD) switch to Java 25 IO.println
+* | 9c519e7 switch to Java 25 compact source file
+* | 8e0f29c Change HelloWorld to print the number of available processors
 |/  
 * d956df6 Create .gitignore
 * 700ee0b Create HelloWorld
@@ -121,14 +121,13 @@ origin  git@github.com:APICe-at-DISI/OOP-git-merge-conflict-test.git (push)
 
 ```shell
 ❯ git push mine master
-X11 forwarding request failed on channel 0
-Enumerating objects: 15, done.
-Counting objects: 100% (15/15), done.
-Delta compression using up to 12 threads
-Compressing objects: 100% (11/11), done.
-Writing objects: 100% (15/15), 1.76 KiB | 1.76 MiB/s, done.
-Total 15 (delta 4), reused 10 (delta 2), pack-reused 0
-remote: Resolving deltas: 100% (4/4), done.
+Enumerating objects: 27, done.
+Counting objects: 100% (27/27), done.
+Delta compression using up to 32 threads
+Compressing objects: 100% (19/19), done.
+Writing objects: 100% (27/27), 4.07 KiB | 4.07 MiB/s, done.
+Total 27 (delta 6), reused 24 (delta 6), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (6/6), done.
 To github.com:DanySK/merge-test.git
  * [new branch]      master -> master
 ```
@@ -136,16 +135,15 @@ To github.com:DanySK/merge-test.git
 Soluzione alternativa (che risolve anche il punto 9):
 ```shell
 ❯ git push -u mine master
-X11 forwarding request failed on channel 0
-Enumerating objects: 10, done.
-Counting objects: 100% (10/10), done.
-Delta compression using up to 12 threads
-Compressing objects: 100% (6/6), done.
-Writing objects: 100% (6/6), 930 bytes | 930.00 KiB/s, done.
-Total 6 (delta 2), reused 1 (delta 0), pack-reused 0
-remote: Resolving deltas: 100% (2/2), completed with 1 local object.
+Enumerating objects: 16, done.
+Counting objects: 100% (16/16), done.
+Delta compression using up to 32 threads
+Compressing objects: 100% (10/10), done.
+Writing objects: 100% (12/12), 2.06 KiB | 2.06 MiB/s, done.
+Total 12 (delta 3), reused 8 (delta 2), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (3/3), completed with 1 local object.
 To github.com:DanySK/merge-test.git
-   8e0f29c..cd50814  master -> master
+   2f617a5..aa69a0f  master -> master
 branch 'master' set up to track 'mine/master'.
 ```
 
